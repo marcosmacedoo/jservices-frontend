@@ -1,6 +1,86 @@
+:root {
+  --blue-100: #b6befa;
+  --blue-200: #7687ff;
+  --blue-300: #6376fc;
+  --blue-400: #5165f7;
+  --blue-500: #4456db;
+  --blue-600: #3848be;
+  --blue-700: #232e80;
+
+  --white-100: #fafafc;
+  --white-200: #f5f6fa;
+  --white-300: #f2f3f7;
+  --white-400: #edeef5;
+  --white-500: #e8e9f2;
+  --white-600: #e3e4ed;
+  --white-700: #dcdee8;
+
+  --black-100: #363638;
+  --black-200: #2f2f30;
+  --black-300: #272729;
+  --black-400: #202021;
+  --black-500: #19191a;
+  --black-600: #141414;
+  --black-700: #0f0f0f;
+
+  --gray-100: #9696a3;
+  --gray-200: #8a8a94;
+  --gray-300: #74747d;
+  --gray-400: #65656b;
+  --gray-500: #5a5a5e;
+  --gray-600: #4b4b4f;
+  --gray-700: #404042;
+  --gray-800: #313133;
+
+  --green-100: #c0f2d1;
+  --green-400: #40d672;
+  --green-700: #14552a;
+
+  --red-100: #f9baba;
+  --red-400: #ee2f2f;
+  --red-700: #8f1e1e;
+
+  --spacing-1: 0.8rem;
+  --spacing-2: 1.6rem;
+  --spacing-3: 2.4rem;
+  --spacing-4: 3.2rem;
+  --spacing-5: 4rem;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'IBM Plex Sans', sans-serif;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  background: var(--white-300);
+}
+
+input,
+button {
+  border: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+.gone {
+  position: absolute;
+  left: -99999px;
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+.mainContainer {
+  margin: 0 auto;
+  width: min(121.7rem, 90%);
 }
