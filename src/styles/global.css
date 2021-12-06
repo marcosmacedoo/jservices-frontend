@@ -60,6 +60,16 @@ html {
 
 body {
   font-size: 1.6rem;
+  background: var(--white-300);
+}
+
+input,
+button {
+  border: 0;
+}
+
+button {
+  cursor: pointer;
 }
 
 .gone {
@@ -68,4 +78,9 @@ body {
   width: 0;
   height: 0;
   visibility: hidden;
+}
+
+.mainContainer {
+  margin: 0 auto;
+  width: min(121.7rem, 90%);
 }
