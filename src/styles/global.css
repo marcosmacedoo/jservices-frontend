@@ -72,6 +72,15 @@ button {
   cursor: pointer;
 }
 
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: initial;
+}
+
 .gone {
   position: absolute;
   left: -99999px;
@@ -82,5 +91,5 @@ button {
 
 .mainContainer {
   margin: 0 auto;
-  width: min(121.7rem, 90%);
+  width: min(121.7rem, 95%);
 }

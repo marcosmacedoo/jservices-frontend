@@ -1,0 +1,97 @@
+.cardService {
+  display: flex;
+  flex-direction: column;
+  padding: 1.6rem 2.4rem;
+  width: 100%;
+  min-height: 20rem;
+  background: var(--white-100);
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  transition: border 0.2s, transform 0.3s;
+}
+
+.cardService:hover {
+  border: 1px solid var(--white-700);
+  transform: translateY(-1rem);
+}
+
+.cardServiceHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  position: relative;
+}
+
+.cardServiceHeader h3 {
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--black-600);
+  word-break: break-word;
+}
+
+.cardServiceHeaderMore {
+  min-height: 2.4rem;
+  min-width: 2.4rem;
+  background: transparent;
+}
+
+.cardServiceHeaderMore img {
+  height: 100%;
+  width: 100%;
+}
+
+.cardServiceDescription {
+  margin-top: 1.6rem;
+  width: 100%;
+  font-size: 1.4rem;
+  line-height: 2.3rem;
+  color: var(--gray-600);
+}
+
+.cardServiceFooter {
+  margin-top: 2.4rem;
+  width: 100%;
+  display: flex;
+  gap: 1.6rem;
+}
+
+.cardServiceFooter p {
+  padding: 0.5rem 1rem;
+  background: var(--blue-100);
+  color: var(--blue-700);
+  font-size: 1.4rem;
+  border-radius: 0.5rem;
+}
+
+@media only screen and (max-width: 1024px) {
+  .cardServiceHeader h3 {
+    font-size: 1.8rem;
+  }
+
+  .cardServiceDescription {
+    font-size: 1.3rem;
+    line-height: 2.1rem;
+  }
+
+  .cardServiceHeaderMore {
+    min-height: 2rem;
+    min-width: 2rem;
+    background: transparent;
+  }
+
+  .cardServiceFooter {
+    margin-top: 1.6rem;
+  }
+
+  .cardServiceFooter p {
+    font-size: 1.3rem;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .cardService {
+    min-height: auto;
+  }
+}
