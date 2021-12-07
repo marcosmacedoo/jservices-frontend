@@ -39,7 +39,19 @@
 }
 
 @media only screen and (max-width: 425px) {
-  button {
+  .header {
+    height: 6rem;
+  }
+
+  .header div {
+    justify-content: center;
+  }
+
+  .h1 {
+    font-size: 2rem;
+  }
+
+  .header div .primaryButton {
     position: absolute;
     left: -99999px;
     width: 0;
