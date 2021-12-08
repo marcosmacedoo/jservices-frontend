@@ -13,7 +13,7 @@ export function Home() {
       <Header />
       <main className={styles.main}>
         <section>
-          <form>
+          <form className={styles.form}>
             <div className={styles.inputGroup}>
               <img
                 src={searchIcon}
@@ -31,6 +31,14 @@ export function Home() {
                 placeholder="Pesquise por aqui por seu serviço"
               />
             </div>
+            <select name="orders" className={styles.select}>
+              <option value="most-recent" selected>
+                Mais recente
+              </option>
+              <option value="most-older">Mais antigo</option>
+              <option value="biggest-budget">Maior orçamento</option>
+              <option value="smallest-budget">Menor orçamento</option>
+            </select>
           </form>
         </section>
         <section>
