@@ -1,0 +1,165 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  padding: 4rem 6.4rem;
+  width: min(78.8rem, 90%);
+  background: var(--white-300);
+  border-radius: 0.5rem;
+}
+
+.modal > h2 {
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: var(--black-300);
+}
+
+.form {
+  margin-top: 3.2rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2.4rem 3.2rem;
+}
+
+.inputGroup {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.label {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--gray-600);
+}
+
+.input {
+  padding: 0 1.6rem;
+  width: 100%;
+  height: 5.2rem;
+  border: 1px solid var(--white-500);
+  border-radius: 0.5rem;
+  font-size: 1.6rem;
+  color: var(--gray-800);
+}
+
+.textarea {
+  padding: 1.2rem 1.6rem;
+  width: 100% !important;
+  border: 1px solid var(--white-500);
+  border-radius: 0.5rem;
+  font-size: 1.6rem;
+  color: var(--gray-800);
+  resize: none;
+}
+
+.gridTwoColumns {
+  grid-column: span 2;
+}
+
+.buttons {
+  margin-top: 1.6rem;
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1.6rem;
+}
+
+.button {
+  padding: 1.4rem 2.4rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.0125em;
+  text-transform: uppercase;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s linear, transform 0.2s;
+}
+
+.button:active {
+  transform: scale(1.05);
+}
+
+.primaryButton {
+  color: var(--white-100);
+  background-color: var(--blue-500);
+}
+
+.primaryButton:hover {
+  background-color: var(--blue-600);
+}
+
+.secondaryButton {
+  color: var(--blue-500);
+  border: 1px solid var(--blue-500);
+  background: transparent;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .form {
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 2.4rem 0;
+  }
+
+  .inputGroup {
+    grid-column: span 2;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .modal {
+    padding: 2.4rem;
+  }
+
+  .form {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2.4rem 0;
+  }
+
+  .buttons {
+    grid-column: span 2;
+  }
+}
+
+@media only screen and (max-width: 475px) {
+  .modal > h2 {
+    font-size: 2rem;
+  }
+
+  .form {
+    margin-top: 2.4rem;
+    gap: 1.6rem;
+  }
+
+  .label {
+    font-size: 1.4rem;
+  }
+
+  .input {
+    height: 4.8rem;
+    font-size: 1.4rem;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .buttons {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1.6rem;
+  }
+
+  .button {
+    height: 5.2rem;
+  }
+}
