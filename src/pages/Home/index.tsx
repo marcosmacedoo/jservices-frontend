@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import styles from './styles.module.css'
 
@@ -6,8 +6,11 @@ import { Header } from '../../components/Header'
 import { CardService } from '../../components/CardService'
 
 import searchIcon from '../../assets/search.svg'
+import { Modal } from '../../components/Modal'
 
 export function Home() {
+  const [isOpenModal, setIsOpenModal] = useState(true)
+
   return (
     <>
       <Header />
@@ -63,6 +66,7 @@ export function Home() {
           </ul>
         </section>
       </main>
+      {isOpenModal && <Modal />}
     </>
   )
 }
