@@ -16,6 +16,11 @@
   width: 100%;
 }
 
+.form {
+  display: flex;
+  gap: 3rem;
+}
+
 .inputGroup {
   position: relative;
   display: flex;
@@ -51,6 +56,17 @@
   border: 2px solid var(--white-700);
   outline: none;
 }
+
+.select {
+  padding: 0 1.6rem;
+  width: 31.1rem;
+  height: 5.2rem;
+  font-size: 1.6rem;
+  border: 1px solid var(--white-500);
+  border-radius: 0.5rem;
+  background: var(--white-100);
+}
+
 
 @media only screen and (max-width: 920px) {
   .listServices {
