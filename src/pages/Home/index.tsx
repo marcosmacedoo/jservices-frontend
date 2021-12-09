@@ -12,8 +12,7 @@ export function Home() {
   const [isOpenModal, setIsOpenModal] = useState(false)
   const [activeTab, setActiveTab] = useState('inProgress')
   const [activeOrder, setActiveOrder] = useState('most-recent')
-
-  useEffect(() => console.log(activeOrder), [activeOrder])
+  const [searchService, setSearchService] = useState('')
 
   return (
     <>
@@ -55,6 +54,8 @@ export function Home() {
                 id="search-service"
                 name="search-service"
                 placeholder="Pesquise por algum serviço"
+                value={searchService}
+                onChange={(event) => setSearchService(event.target.value)}
               />
             </div>
             <label htmlFor="orders" className="gone">
