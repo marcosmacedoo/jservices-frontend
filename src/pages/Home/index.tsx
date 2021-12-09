@@ -11,8 +11,9 @@ import { Modal } from '../../components/Modal'
 export function Home() {
   const [isOpenModal, setIsOpenModal] = useState(false)
   const [activeTab, setActiveTab] = useState('inProgress')
+  const [activeOrder, setActiveOrder] = useState('most-recent')
 
-  useEffect(() => console.log(activeTab), [activeTab])
+  useEffect(() => console.log(activeOrder), [activeOrder])
 
   return (
     <>
@@ -56,10 +57,17 @@ export function Home() {
                 placeholder="Pesquise por algum serviço"
               />
             </div>
-            <select name="orders" className={styles.select}>
-              <option value="most-recent" selected>
-                Mais recente
-              </option>
+            <label htmlFor="orders" className="gone">
+              Ordenações
+            </label>
+            <select
+              id="orders"
+              name="orders"
+              className={styles.select}
+              defaultValue={activeTab}
+              onChange={(event) => setActiveOrder(event.target.value)}
+            >
+              <option value="most-recent">Mais recente</option>
               <option value="most-older">Mais antigo</option>
               <option value="biggest-budget">Maior orçamento</option>
               <option value="smallest-budget">Menor orçamento</option>
