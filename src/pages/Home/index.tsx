@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import styles from './styles.module.css'
 
@@ -9,7 +9,10 @@ import searchIcon from '../../assets/search.svg'
 import { Modal } from '../../components/Modal'
 
 export function Home() {
-  const [isOpenModal, setIsOpenModal] = useState(true)
+  const [isOpenModal, setIsOpenModal] = useState(false)
+  const [activeTab, setActiveTab] = useState('inProgress')
+
+  useEffect(() => console.log(activeTab), [activeTab])
 
   return (
     <>
@@ -18,10 +21,22 @@ export function Home() {
         <section className={styles.sectionFilters}>
           <h2 className={styles.h2}>Seus serviços</h2>
           <div className={styles.tabs}>
-            <button className={`${styles.tab} ${styles.tabActive}`}>
+            <button
+              className={`${styles.tab} ${
+                activeTab === 'inProgress' && styles.tabActive
+              }`}
+              onClick={() => setActiveTab('inProgress')}
+            >
               Em andamento(6)
             </button>
-            <button className={styles.tab}>Finalizados(0)</button>
+            <button
+              className={`${styles.tab} ${
+                activeTab === 'finished' && styles.tabActive
+              }`}
+              onClick={() => setActiveTab('finished')}
+            >
+              Finalizados(0)
+            </button>
           </div>
           <form className={styles.form}>
             <div className={styles.inputGroup}>
