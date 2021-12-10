@@ -48,7 +48,7 @@ export function CardService({ service }: CardServicesProps) {
         >
           <img src={moreIcon} alt="Opções" />
         </button>
-        {openMoreDropdown && <MoreDropdown />}
+        {openMoreDropdown && <MoreDropdown idService={service.id} />}
       </header>
       <p className={styles.cardServiceDescription}>{service.description}</p>
       <footer className={styles.cardServiceFooter}>

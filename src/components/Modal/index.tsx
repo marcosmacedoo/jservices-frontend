@@ -6,7 +6,8 @@ import { api } from '../../services/api'
 import { GlobalContext } from '../../contexts/GlobalContext'
 
 export function Modal() {
-  const { closeModal } = useContext(GlobalContext)
+  const { closeModal, updateIsServiceChange, updateServices, services } =
+    useContext(GlobalContext)
 
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
@@ -27,6 +28,7 @@ export function Modal() {
       title,
       description: !description ? 'Sem descrição' : description,
       deadline,
+      status: 'inProgress',
       budget: Number(budget),
     }
 
@@ -37,13 +39,16 @@ export function Modal() {
 
       const service = { id, ...data }
 
-      console.log(`Serviço criado ${service}`)
+      updateServices([service, ...services])
+
+      console.log('Serviço criado' + service)
     } catch {
       const message = 'Erro ao salvar serviço na API'
       console.error(message)
       alert(message)
     }
 
+    updateIsServiceChange()
     resetForm()
     closeModal()
   }
