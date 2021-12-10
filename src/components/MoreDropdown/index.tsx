@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import styles from './styles.module.css'
 
@@ -13,6 +14,8 @@ interface MoreDropdownProps {
 }
 
 export function MoreDropdown({ idService }: MoreDropdownProps) {
+  const navigate = useNavigate()
+
   const { removeService, finishedService } = useContext(GlobalContext)
 
   return (
@@ -30,7 +33,7 @@ export function MoreDropdown({ idService }: MoreDropdownProps) {
         </button>
       </li>
       <li className={styles.dropdownItem}>
-        <button>
+        <button onClick={() => navigate(`details/${idService}`)}>
           <img src={infoIcon} alt="Detalhes" />
           Detalhes
         </button>

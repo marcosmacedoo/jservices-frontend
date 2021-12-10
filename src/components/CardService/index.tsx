@@ -5,6 +5,7 @@ import styles from './styles.module.css'
 import { MoreDropdown } from '../MoreDropdown'
 
 import moreIcon from '../../assets/more.svg'
+import { formatDate } from '../../utils/formatDate'
 
 interface Service {
   id: string
@@ -26,17 +27,6 @@ export function CardService({ service }: CardServicesProps) {
   const [openMoreDropdown, setMoreDropdown] = useState(false)
 
   const updateMoreDropdown = () => setMoreDropdown(!openMoreDropdown)
-
-  function formatDate(date: string) {
-    const dateObject = new Date(date)
-
-    const day = dateObject.getUTCDate()
-    const month = dateObject.getMonth() + 1
-    const year = dateObject.getFullYear()
-    const formattedDate = `${day}/${month}/${year}`
-
-    return formattedDate
-  }
 
   return (
     <article className={styles.cardService}>
