@@ -1,14 +1,42 @@
-import React, { FormEvent } from 'react'
-import { Link } from 'react-router-dom'
+import React, { FormEvent, useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 
 import styles from './styles.module.css'
 
 import { Header } from '../../components/Header'
+import { api } from '../../services/api'
+import { formatDate } from '../../utils/formatDate'
+
+interface Service {
+  id: string
+  title: string
+  description: string
+  created_at?: string
+  updated_at?: string
+  status: string
+  comments?: string[]
+  budget: number
+  deadline: string
+}
 
 export function Details() {
+  const params = useParams() as { id: string }
+
+  const [service, setService] = useState<Service>()
+
   function handleFormSubmit(event: FormEvent) {
     event.preventDefault()
   }
+
+  useEffect(() => {
+    async function laodService() {
+      const response = await api.get(`/services/${params.id}`)
+
+      setService(response.data)
+    }
+
+    laodService()
+  }, [])
 
   return (
     <>
@@ -17,30 +45,29 @@ export function Details() {
         <div className={styles.mainContainer}>
           <p className={styles.breadcrumbs}>
             <Link to="/">Home</Link> {'>'}{' '}
-            <Link to="/details/1">Manutenção e Limpeza de Split</Link>
+            <Link to="/details/1">{service?.title}</Link>
           </p>
           <article className={styles.article}>
-            <h2>Manutenção e Limpeza de Split</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui porta
-              vel aenean odio morbi nunc. Tortor diam, enim ultrices turpis id
-              morbi amet neque. Eu nulla massa scelerisque mauris. Pellentesque
-              sodales suspendisse Nibh iaculis mattis iaculis scelerisque
-              quisque ut. Consectetur lobortis vitae aenean ut tincidunt in nibh
-              et{' '}
-            </p>
+            <h2>{service?.title}</h2>
+            <p>{service?.description}</p>
             <ul className={styles.listInfo}>
               <li className={styles.listInfoItem}>
                 <h3>Data de término</h3>
-                <span>04/01/2021</span>
+                <span>
+                  {service?.deadline && formatDate(service?.deadline)}
+                </span>
               </li>
               <li className={styles.listInfoItem}>
                 <h3>Status</h3>
-                <span>Em andamento</span>
+                <span>
+                  {service?.status === 'inProgress'
+                    ? 'Em andamento'
+                    : 'Finalizado'}
+                </span>
               </li>
               <li className={styles.listInfoItem}>
                 <h3>Orçamento</h3>
-                <span>R$150,00</span>
+                <span>R${service?.budget.toFixed(2)}</span>
               </li>
             </ul>
           </article>
