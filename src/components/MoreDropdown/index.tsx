@@ -1,12 +1,22 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import styles from './styles.module.css'
+
+import { GlobalContext } from '../../contexts/GlobalContext'
+
+import { api } from '../../services/api'
 
 import checkIcon from '../../assets/check.svg'
 import deleteIcon from '../../assets/delete.svg'
 import infoIcon from '../../assets/info.svg'
 
-export function MoreDropdown() {
+interface MoreDropdownProps {
+  idService: string
+}
+
+export function MoreDropdown({ idService }: MoreDropdownProps) {
+  const { removeService } = useContext(GlobalContext)
+
   return (
     <ul className={styles.dropdown}>
       <li className={styles.dropdownItem}>
@@ -16,7 +26,7 @@ export function MoreDropdown() {
         </button>
       </li>
       <li className={styles.dropdownItem}>
-        <button>
+        <button onClick={() => removeService(idService)}>
           <img src={deleteIcon} alt="Remover" />
           Remover
         </button>
