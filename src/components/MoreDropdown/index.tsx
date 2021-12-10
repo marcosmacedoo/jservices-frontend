@@ -4,8 +4,6 @@ import styles from './styles.module.css'
 
 import { GlobalContext } from '../../contexts/GlobalContext'
 
-import { api } from '../../services/api'
-
 import checkIcon from '../../assets/check.svg'
 import deleteIcon from '../../assets/delete.svg'
 import infoIcon from '../../assets/info.svg'
@@ -15,12 +13,12 @@ interface MoreDropdownProps {
 }
 
 export function MoreDropdown({ idService }: MoreDropdownProps) {
-  const { removeService } = useContext(GlobalContext)
+  const { removeService, finishedService } = useContext(GlobalContext)
 
   return (
     <ul className={styles.dropdown}>
       <li className={styles.dropdownItem}>
-        <button>
+        <button onClick={() => finishedService(idService)}>
           <img src={checkIcon} alt="Concluir" />
           Concluir
         </button>
