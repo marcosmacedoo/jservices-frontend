@@ -11,7 +11,8 @@ import { GlobalContext } from '../../contexts/GlobalContext'
 import searchIcon from '../../assets/search.svg'
 
 export function Home() {
-  const [activeTab, setActiveTab] = useState('inProgress')
+  const { services, updateActiveTab, activeTab } = useContext(GlobalContext)
+
   const [activeOrder, setActiveOrder] = useState('most-recent')
   const [searchService, setSearchService] = useState('')
 
@@ -28,17 +29,17 @@ export function Home() {
               className={`${styles.tab} ${
                 activeTab === 'inProgress' && styles.tabActive
               }`}
-              onClick={() => setActiveTab('inProgress')}
+              onClick={() => updateActiveTab('inProgress')}
             >
-              Em andamento(6)
+              Em andamento
             </button>
             <button
               className={`${styles.tab} ${
                 activeTab === 'finished' && styles.tabActive
               }`}
-              onClick={() => setActiveTab('finished')}
+              onClick={() => updateActiveTab('finished')}
             >
-              Finalizados(0)
+              Finalizados
             </button>
           </div>
           <form className={styles.form}>
@@ -81,15 +82,11 @@ export function Home() {
         <section>
           <h2 className="gone">Lista de serviços</h2>
           <ul className={styles.listServices}>
-            <li className={styles.cardItem}>
-              <CardService />
-            </li>
-            <li className={styles.cardItem}>
-              <CardService />
-            </li>
-            <li className={styles.cardItem}>
-              <CardService />
-            </li>
+            {services?.map((service) => (
+              <li className={styles.cardItem} key={service.id}>
+                <CardService service={service} />
+              </li>
+            ))}
           </ul>
         </section>
       </main>

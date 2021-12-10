@@ -45,6 +45,7 @@ export function Modal() {
     }
 
     resetForm()
+    closeModal()
   }
 
   function handleClickResetButton() {
