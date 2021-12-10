@@ -11,6 +11,8 @@ import { GlobalContext } from '../../contexts/GlobalContext'
 import searchIcon from '../../assets/search.svg'
 
 export function Home() {
+  const { services } = useContext(GlobalContext)
+
   const [activeTab, setActiveTab] = useState('inProgress')
   const [activeOrder, setActiveOrder] = useState('most-recent')
   const [searchService, setSearchService] = useState('')
@@ -81,15 +83,11 @@ export function Home() {
         <section>
           <h2 className="gone">Lista de serviços</h2>
           <ul className={styles.listServices}>
-            <li className={styles.cardItem}>
-              <CardService />
-            </li>
-            <li className={styles.cardItem}>
-              <CardService />
-            </li>
-            <li className={styles.cardItem}>
-              <CardService />
-            </li>
+            {services?.map((service) => (
+              <li className={styles.cardItem} key={service.id}>
+                <CardService service={service} />
+              </li>
+            ))}
           </ul>
         </section>
       </main>
