@@ -1,11 +1,55 @@
-import React, { FormEvent } from 'react'
+import React, { FormEvent, useContext, useState } from 'react'
 
 import styles from './styles.module.css'
 
-export function Modal() {
+import { api } from '../../services/api'
+import { GlobalContext } from '../../contexts/GlobalContext'
 
-  function handleFormSubmit(event: FormEvent) {
+export function Modal() {
+  const { closeModal } = useContext(GlobalContext)
+
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [deadline, setDeadline] = useState('')
+  const [budget, setBudget] = useState('')
+
+  function resetForm() {
+    setTitle('')
+    setDescription('')
+    setDeadline('')
+    setBudget('')
+  }
+
+  async function handleFormSubmit(event: FormEvent) {
     event.preventDefault()
+
+    const data = {
+      title,
+      description: !description ? 'Sem descrição' : description,
+      deadline,
+      budget: Number(budget),
+    }
+
+    try {
+      const response = await api.post('/services', data)
+
+      const { id } = response.data
+
+      const service = { id, ...data }
+
+      console.log(`Serviço criado ${service}`)
+    } catch {
+      const message = 'Erro ao salvar serviço na API'
+      console.error(message)
+      alert(message)
+    }
+
+    resetForm()
+  }
+
+  function handleClickResetButton() {
+    resetForm()
+    closeModal()
   }
 
   return (
@@ -22,6 +66,8 @@ export function Modal() {
               className={`${styles.input}`}
               name="title"
               id="title"
+              value={title}
+              onChange={(event) => setTitle(event.target.value)}
               required
             />
           </div>
@@ -34,6 +80,8 @@ export function Modal() {
               name="description"
               id="description"
               rows={6}
+              value={description}
+              onChange={(event) => setDescription(event.target.value)}
             ></textarea>
           </div>
           <div className={`${styles.inputGroup}`}>
@@ -46,7 +94,9 @@ export function Modal() {
               name="budget"
               id="budget"
               min={0}
-              step={0.1}
+              step={0.01}
+              value={budget}
+              onChange={(event) => setBudget(event.target.value)}
               required
             />
           </div>
@@ -59,6 +109,8 @@ export function Modal() {
               className={`${styles.input}`}
               name="deadline"
               id="deadline"
+              value={deadline}
+              onChange={(event) => setDeadline(event.target.value)}
               required
             />
           </div>
@@ -66,6 +118,7 @@ export function Modal() {
             <button
               type="reset"
               className={`${styles.button} ${styles.secondaryButton}`}
+              onClick={handleClickResetButton}
             >
               Fechar
             </button>
