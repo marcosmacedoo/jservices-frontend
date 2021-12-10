@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 
 import styles from './styles.module.css'
 
 import { Header } from '../../components/Header'
+import { Modal } from '../../components/Modal'
 import { CardService } from '../../components/CardService'
 
+import { GlobalContext } from '../../contexts/GlobalContext'
+
 import searchIcon from '../../assets/search.svg'
-import { Modal } from '../../components/Modal'
 
 export function Home() {
-  const [isOpenModal, setIsOpenModal] = useState(false)
   const [activeTab, setActiveTab] = useState('inProgress')
   const [activeOrder, setActiveOrder] = useState('most-recent')
   const [searchService, setSearchService] = useState('')
+
+  const { isOpenModal } = useContext(GlobalContext)
 
   return (
     <>
