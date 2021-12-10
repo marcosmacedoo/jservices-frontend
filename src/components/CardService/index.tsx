@@ -10,10 +10,10 @@ interface Service {
   id: string
   title: string
   description: string
-  created_at: string
-  updated_at: string
+  created_at?: string
+  updated_at?: string
   status: string
-  comments: string[]
+  comments?: string[]
   budget: number
   deadline: string
 }

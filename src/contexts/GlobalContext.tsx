@@ -12,6 +12,7 @@ interface GlobalContextProps {
   removeService: (idService: string) => void
   updateIsServiceChange: () => void
   updateServices: (services: Service[]) => void
+  finishedService: (idService: string) => Promise<void>
 }
 
 interface GlobalProviderProps {
@@ -36,6 +37,7 @@ export function GlobalProvider({ children }: GlobalProviderProps) {
   const [isOpenModal, setIsOpenModal] = useState(false)
   const [activeTab, setActiveTab] = useState('inProgress')
   const [services, setServices] = useState<Service[]>([])
+  const [servicesApi, setServicesApi] = useState<Service[]>([])
   const [isServiceChange, setIsServiceChange] = useState(false)
 
   const closeModal = () => setIsOpenModal(false)
@@ -49,28 +51,46 @@ export function GlobalProvider({ children }: GlobalProviderProps) {
   const updateServices = (services: Service[]) => setServices(services)
 
   function removeService(idService: string) {
-    setServices(services.filter((service) => service.id !== idService))
+    setServicesApi(services.filter((service) => service.id !== idService))
 
     // await api.delete(`/services/${idService}`)
 
     // updateIsServiceChange()
   }
 
+  async function finishedService(idService: string) {
+    const _services = services.map((service) => {
+      if (service.id === idService)
+        return {
+          ...service,
+          status: 'finished',
+        }
+
+      return service
+    })
+
+    console.log(_services)
+
+    setServicesApi(_services)
+
+    await api.put(`/services/${idService}/edit/status/finished`)
+  }
+
   useEffect(() => {
     async function loadServices() {
-      const response = await api.get(`services?status=${activeTab}`)
+      const response = await api.get(`services`)
 
-      setServices(response.data)
+      setServicesApi(response.data)
     }
 
     loadServices()
   }, [])
 
   useEffect(() => {
-    setServices(services.filter((service) => service.status === activeTab))
-  }, [activeTab])
+    setServices(servicesApi.filter((service) => service.status === activeTab))
+  }, [activeTab, servicesApi])
 
-  useEffect(() => console.log(services), [services])
+  // useEffect(() => console.log(services), [services])
 
   return (
     <GlobalContext.Provider
@@ -84,6 +104,7 @@ export function GlobalProvider({ children }: GlobalProviderProps) {
         removeService,
         updateIsServiceChange,
         updateServices,
+        finishedService,
       }}
     >
       {children}
